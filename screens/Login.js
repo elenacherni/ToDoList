@@ -2,10 +2,6 @@ import React,  {Component} from 'react';
 import { StyleSheet, View, Text, Alert } from 'react-native';
 import * as firebase from 'firebase';
 import { Container, Form, Input, Item, Button, Label } from 'native-base'
-import Header from '../components/Header'
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
 
 export default class Login extends Component {
 
@@ -52,8 +48,6 @@ export default class Login extends Component {
 
     render() {
         return (
-          <View style={styles.View}>
-            <Header title="Login"/>
             <Container style={styles.container}>
                 <Form>
                     <Item floatingLabel>
@@ -96,7 +90,6 @@ export default class Login extends Component {
 
                 </Form>
             </Container>
-          </View>
         );
     }
 }
@@ -108,7 +101,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 10
     },
-    View: {
-      flex:1,
-    }
 });

@@ -16,7 +16,14 @@ function App() {
   
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator initialRouteName="Login"
+      screenOptions={{
+      headerStyle: {
+        backgroundColor: 'firebrick',
+      },
+      headerTintColor: 'white',
+    }}
+    >
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="To Do List" component={ToDoMain} />
     </Stack.Navigator>

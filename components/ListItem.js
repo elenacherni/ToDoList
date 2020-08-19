@@ -12,19 +12,19 @@ const ListItem = ({
 }) => {
   const [isSelected, setSelection] = useState(item.checked);
   return (
-    // <TouchableOpacity style={styles.listItem}>
       <View style={styles.listItemView}>
       <CheckBox value={isSelected} onValueChange={(newValue) => {setSelection(newValue); itemChecked(item.id, item.checked)}}/>
             <Text>
             {item.text}
           </Text>
-          <Icon
-            name="delete"
-            size={25}
-            color="firebrick"
-            onPress={() => deleteItem(item.id)}/> 
+          <TouchableOpacity>
+            <Icon
+              name="delete"
+              size={25}
+              color="firebrick"
+              onPress={() => deleteItem(item.id)}/> 
+          </TouchableOpacity>
       </View>
-    // </TouchableOpacity>
   );
 };
 

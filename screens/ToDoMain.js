@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, FlatList, Alert} from 'react-native';
-import Header from '../components/Header';
 import ListItem from '../components/ListItem';
 import AddItem from '../components/AddItem';
 import uuid from 'react-native-uuid';
@@ -45,11 +44,19 @@ export default function ToDoMain({route}){
     .ref('/Lists/'+listId)
     .once('value')
     .then(snapshot => {
-      // console.log('User data as been restored', snapshot.val());
+      
+      if(snapshot.val()){
+        // console.log('User data as been restored', snapshot.val());
       const arr = Object.keys(snapshot.val()).map(function(key) {
         return { key:  key,...snapshot.val()[key] };
       });
       setItems(arr);
+      }
+      else {
+        // console.log('the array is null')
+        setItems([]);
+      };
+      
     });
 
 
@@ -99,7 +106,6 @@ export default function ToDoMain({route}){
 
   return (
     <View style={styles.container}>
-      <Header title="To Do List" />
       <AddItem addItem={addItem} />
       <FlatList
         data={items}
