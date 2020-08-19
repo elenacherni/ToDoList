@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements'
 
-const AddItem = ({addItem}) => {
+const AddItem = ({ addItem }) => {
   const [text, setText] = useState('');
   const onChange = textValue => setText(textValue);
 
@@ -26,7 +26,7 @@ const AddItem = ({addItem}) => {
           addItem(text);
           setText('');
         }}>
-        <Icon name="add" size={20} color="firebrick"/>
+        <Icon name="add" size={20} color="firebrick" />
         <Text style={styles.btnText}> Add To Do </Text>
       </TouchableOpacity>
     </View>

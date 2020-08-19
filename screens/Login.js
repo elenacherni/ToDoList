@@ -1,4 +1,4 @@
-import React,  {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, View, Text, Alert } from 'react-native';
 import * as firebase from 'firebase';
 import { Container, Form, Input, Item, Button, Label } from 'native-base'
@@ -36,8 +36,8 @@ export default class Login extends Component {
         try {
 
             firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
-            // console.log(user)
-            this.state.navigation.navigate('To Do List', user.user.email)
+                // console.log(user)
+                this.state.navigation.navigate('To Do List', user.user.email)
 
             });
         }
@@ -73,19 +73,19 @@ export default class Login extends Component {
                     <Button style={{ marginTop: 10 }}
                         full
                         rounded
-                        success
+                        light
                         onPress={() => this.loginUser(this.state.email, this.state.password)}
                     >
-                        <Text style={{ color: 'white' }}> Login</Text>
+                        <Text style={{ color: 'white' }}>Login</Text>
                     </Button>
 
                     <Button style={{ marginTop: 10 }}
                         full
                         rounded
-                        primary
+                        danger
                         onPress={() => this.signUpUser(this.state.email, this.state.password)}
                     >
-                        <Text style={{ color: 'white' }}> Sign Up</Text>
+                        <Text style={{ color: 'white' }}>Sign Up</Text>
                     </Button>
 
                 </Form>
