@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, FlatList, Alert} from 'react-native';
-import Header from './components/Header';
-import ListItem from './components/ListItem';
-import AddItem from './components/AddItem';
+import Header from '../components/Header';
+import ListItem from '../components/ListItem';
+import AddItem from '../components/AddItem';
 import uuid from 'react-native-uuid';
 
 import * as firebase from 'firebase'
@@ -10,7 +10,7 @@ import * as firebase from 'firebase'
 const temp = () =>{
         
   firebase.database()
-  .ref('/Users/'+1)
+  .ref('/Lists/'+1)
   .set([
     {
       id: uuid(),
@@ -34,14 +34,15 @@ const temp = () =>{
 
 // temp();//inserting fake data to database
  
+export default function ToDoMain({route}){
 
-const ToDoMain = () => {
+  const [items, setItems] = useState([])  
+ 
+  const listId = route.params.split('.').join(' ');
+  // console.log(listId.split('.').join(' '));
 
-  const [items, setItems] = useState([])   
-
-
-  firebase.database()
-    .ref('/Users/'+1)
+   firebase.database()
+    .ref('/Lists/'+listId)
     .once('value')
     .then(snapshot => {
       // console.log('User data as been restored', snapshot.val());
@@ -53,7 +54,8 @@ const ToDoMain = () => {
 
 
   const deleteItem = id => {
-    const ref1 = firebase.database().ref('/Users/'+1).orderByChild('id').equalTo(id);
+    
+    const ref1 = firebase.database().ref('/Lists/'+listId).orderByChild('id').equalTo(id);
     ref1.once('value', snapshot=> snapshot.forEach(child => child.ref.remove()));
   };
 
@@ -62,7 +64,7 @@ const ToDoMain = () => {
     if (!text) {
       Alert.alert(
         'No ToDo entered',
-        'Please enter a To Do when adding to your To Do list',
+        'Please enter a To Do when adding to your To Do List',
         [
           {
             text: 'OK',
@@ -77,7 +79,7 @@ const ToDoMain = () => {
       });
       // console.log(text)
       firebase.database()
-      .ref('/Users/'+1)
+      .ref('/Lists/'+listId)
       .push({id: uuid(), text, checked: false})
       // .then(() => console.log('Data set.'));
     }
@@ -88,7 +90,7 @@ const ToDoMain = () => {
 
   const itemChecked = (id, checked) => {
     
-    const ref1 = firebase.database().ref('/Users/'+1).orderByChild('id').equalTo(id);
+    const ref1 = firebase.database().ref('/Lists/'+listId).orderByChild('id').equalTo(id);
     ref1.once('value', snapshot=> snapshot.forEach(child => child.ref.update({
       checked: !checked,
     })));
@@ -121,4 +123,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;

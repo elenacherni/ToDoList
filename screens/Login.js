@@ -2,9 +2,9 @@ import React,  {Component} from 'react';
 import { StyleSheet, View, Text, Alert } from 'react-native';
 import * as firebase from 'firebase';
 import { Container, Form, Input, Item, Button, Label } from 'native-base'
-import Header from './Header'
-
-  // firebase.auth().createUserWithEmailAndPassword('arabusssszxcvxzcvfsdfdsss@mail.com','000001')
+import Header from '../components/Header'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 export default class Login extends Component {
@@ -14,7 +14,8 @@ export default class Login extends Component {
 
         this.state = ({
             email: '',
-            password: ''
+            password: '',
+            navigation: this.props.navigation
         })
     }
 
@@ -38,10 +39,11 @@ export default class Login extends Component {
 
         try {
 
-            firebase.auth().signInWithEmailAndPassword(email, password).then(function (user) {
-                console.log(user)
+            firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
+            // console.log(user)
+            this.state.navigation.navigate('To Do List', user.user.email)
 
-            })
+            });
         }
         catch (error) {
             console.log(error.toString())

@@ -6,9 +6,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "0.1.10",
     "@react-native-firebase/app": "^8.3.1",
     "@react-native-firebase/auth": "^8.3.3",
     "@react-native-firebase/database": "^7.4.2",
+    "@react-navigation/native": "^5.7.3",
+    "@react-navigation/stack": "^5.9.0",
     "buffer": "^5.6.0",
     "expo": "~38.0.8",
     "expo-splash-screen": "^0.5.0",
@@ -20,8 +23,9 @@
     "react-dom": "~16.11.0",
     "react-native": "~0.62.2",
     "react-native-elements": "^2.2.1",
-    "react-native-gesture-handler": "~1.6.1",
+    "react-native-gesture-handler": "~1.6.0",
     "react-native-reanimated": "~1.9.0",
+    "react-native-safe-area-context": "~3.0.7",
     "react-native-screens": "~2.9.0",
     "react-native-unimodules": "~0.10.1",
     "react-native-uuid": "^1.4.9",
